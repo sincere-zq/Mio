@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="false">
+
+    <LinearLayout
+        android:id="@+id/ll_botom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/black_tabs"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <yanyu.com.mymio.view.CustomTabSelector
+            android:id="@+id/one"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:src="@mipmap/damenkou2"
+            android:text="大门口" />
+
+        <yanyu.com.mymio.view.CustomTabSelector
+            android:id="@+id/two"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:src="@mipmap/woaide1"
+            android:text="我爱的" />
+
+        <yanyu.com.mymio.view.CustomTabSelector
+            android:id="@+id/three"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:src="@mipmap/yueyueyue1"
+            android:text="约约约" />
+
+        <yanyu.com.mymio.view.CustomTabSelector
+            android:id="@+id/four"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:src="@mipmap/hukoubu1"
+            android:text="户口薄" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_frags"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/ll_botom"
+        android:gravity="center"
+        android:orientation="vertical" />
+
+</RelativeLayout>

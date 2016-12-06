@@ -1,0 +1,30 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <!--<item name="android:windowAnimationStyle">@style/myact</item>-->
+    </style>
+
+    <style name="myact">
+        <item name="android:activityOpenEnterAnimation">@anim/translate_in</item>
+        <item name="android:activityOpenExitAnimation">@anim/translate_out</item>
+        <item name="android:activityCloseEnterAnimation">@anim/translate_in</item>
+        <item name="android:activityCloseExitAnimation">@anim/translate_out</item>
+    </style>
+    <!--<style name="StarApp" parent="Theme.AppCompat.Light.DarkActionBar">-->
+    <!--<item name="windowNoTitle">true</item>-->
+    <!--<item name="android:windowBackground">@drawable/start_app_background</item>-->
+    <!--</style>-->
+    <style name="mytheme" parent="@android:style/Theme">
+
+        <item name="@android:windowAnimationStyle">@style/myact</item>
+
+    </style>
+</resources>
