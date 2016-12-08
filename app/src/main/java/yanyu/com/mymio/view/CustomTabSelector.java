@@ -2,7 +2,6 @@ package yanyu.com.mymio.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,10 +49,10 @@ public class CustomTabSelector extends LinearLayout {
         addView(view);
         if (attrs != null) {
             TypedArray t = context.obtainStyledAttributes(attrs, R.styleable.CustomTabSelector);
-            Drawable d = t.getDrawable(R.styleable.CustomTabSelector_android_src);
-            if (d != null)
-                img.setImageDrawable(d);
-            String s = t.getString(R.styleable.CustomTabSelector_android_text);
+            int d = t.getResourceId(R.styleable.CustomTabSelector_top_img, 0);
+            if (d != 0)
+                img.setImageResource(d);
+            String s = t.getString(R.styleable.CustomTabSelector_botom_text);
             if (s != null)
                 text.setText(s);
             t.recycle();

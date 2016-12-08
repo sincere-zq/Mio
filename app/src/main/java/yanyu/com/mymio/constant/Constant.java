@@ -1,4 +1,4 @@
-package yanyu.com.mymio;
+package yanyu.com.mymio.constant;
 
 /**
  * Created by Administrator on 2016/12/1 0001.

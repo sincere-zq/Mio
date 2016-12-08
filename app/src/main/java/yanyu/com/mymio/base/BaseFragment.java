@@ -19,7 +19,7 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (rootView == null) {
             rootView = inflater.inflate(getResource(), null);
-            ButterKnife.bind(getActivity());
+            ButterKnife.bind(this, rootView);
             beforeInitView();
             initView(rootView);
             initData();
@@ -73,6 +73,6 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        ButterKnife.unbind(getActivity());
+        ButterKnife.unbind(this);
     }
 }

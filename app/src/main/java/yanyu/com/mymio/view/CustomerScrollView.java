@@ -9,19 +9,19 @@ import android.widget.ScrollView;
  * Description:监听滑动的ScorllView类同
  */
 
-public class CustomScollView extends ScrollView {
+public class CustomerScrollView extends ScrollView {
 
     private OnScrollChangedListener onScrollChangedListener;
 
-    public CustomScollView(Context context) {
+    public CustomerScrollView(Context context) {
         super(context);
     }
 
-    public CustomScollView(Context context, AttributeSet attrs) {
+    public CustomerScrollView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public CustomScollView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public CustomerScrollView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 

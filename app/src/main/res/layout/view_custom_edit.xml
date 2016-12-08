@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:padding="@dimen/dp_20">
+
+    <TextView
+        android:id="@+id/tv_left"
+        style="@style/CustomTextViewStyle"
+        android:gravity="center_vertical"
+        android:text="账号" />
+
+    <EditText
+        android:id="@+id/et_right"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_50"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_weight="1"
+        android:background="@null"
+        android:gravity="center_vertical"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black_bg"
+        android:textCursorDrawable="@drawable/shape_cursor_color" />
+</LinearLayout>

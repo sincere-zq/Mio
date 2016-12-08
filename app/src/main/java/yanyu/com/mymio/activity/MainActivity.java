@@ -29,7 +29,6 @@ public class MainActivity extends BaseActivity {
     CustomTabSelector three;
     @Bind(R.id.four)
     CustomTabSelector four;
-
     private DaMenKouFragment daMenKouFragment;
 
     private MyLoveFragment myLoveFragment;
@@ -91,7 +90,7 @@ public class MainActivity extends BaseActivity {
     }
 
     /**
-     * 初始化tebs
+     * 初始化tabs
      */
     public void initTab() {
         one.setImgResouce(R.mipmap.damenkou1);

@@ -9,7 +9,7 @@ import java.security.NoSuchAlgorithmException;
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 
-import yanyu.com.mymio.Constant;
+import yanyu.com.mymio.constant.Constant;
 
 /**
  * 采用MD5加密解密、SHA1、SHA256

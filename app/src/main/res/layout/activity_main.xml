@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -20,8 +21,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:src="@mipmap/damenkou2"
-            android:text="大门口" />
+            app:botom_text="大门口"
+            app:top_img="@mipmap/damenkou2" />
 
         <yanyu.com.mymio.view.CustomTabSelector
             android:id="@+id/two"
@@ -29,8 +30,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:src="@mipmap/woaide1"
-            android:text="我爱的" />
+            app:botom_text="我爱的"
+            app:top_img="@mipmap/woaide1" />
 
         <yanyu.com.mymio.view.CustomTabSelector
             android:id="@+id/three"
@@ -38,8 +39,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:src="@mipmap/yueyueyue1"
-            android:text="约约约" />
+            app:botom_text="约约约"
+            app:top_img="@mipmap/yueyueyue1" />
 
         <yanyu.com.mymio.view.CustomTabSelector
             android:id="@+id/four"
@@ -47,8 +48,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:src="@mipmap/hukoubu1"
-            android:text="户口薄" />
+            app:botom_text="户口薄"
+            app:top_img="@mipmap/hukoubu1" />
     </LinearLayout>
 
     <LinearLayout

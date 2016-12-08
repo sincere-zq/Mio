@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import butterknife.Bind;
-import yanyu.com.mymio.Constant;
+import yanyu.com.mymio.constant.Constant;
 import yanyu.com.mymio.R;
 import yanyu.com.mymio.adpter.NewsAdapter;
 import yanyu.com.mymio.base.BaseActivity;
@@ -68,7 +68,6 @@ public class SecondActivity extends BaseActivity {
                     newsAdapter.notifyDataSetChanged();
                 }
             }
-
             @Override
             public void onFail(String errMsg) {
 
