@@ -1,15 +1,21 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="yanyu.com.mymio.fragment.DaMenKouFragment">
 
     <TextView
         android:id="@+id/desc"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:text="我爱的"
         android:textColor="@color/black" />
 
-</FrameLayout>
+    <com.jude.rollviewpager.RollPagerView
+        android:id="@+id/rollPagerView"
+        android:layout_width="match_parent"
+        android:layout_height="150dp" />
+
+</LinearLayout>

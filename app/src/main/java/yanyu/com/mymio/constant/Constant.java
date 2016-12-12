@@ -9,4 +9,6 @@ public class Constant {
     public static final String URL = "http://app-service.wopu.me/";
     public static final String GETVIEWVIDEOLIST = URL + "Common.wp/Video/getViewVideoList";//获取视频观看记录
     public static final String GETCOLLECTNEWSLIST = URL + "/Common.wp/News/getCollectNewsList";//获得用户收藏的咨询列表
+    public static final String GET_BANNER = URL + "/Common.wp/Index/getIndexBanner"; //查询banner数据
+    public static final String GET_NEWSLIST = URL + "/Common.wp/News/getNewsList"; //获取资讯列表
 }
