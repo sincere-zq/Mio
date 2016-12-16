@@ -14,7 +14,10 @@
             <enum name="gone" value="0" />
         </attr>
     </declare-styleable>
-
+    <attr name="visible_tab_count" format="integer" />
+    <declare-styleable name="ViewPagerIndicator">
+        <attr name="visible_tab_count" />
+    </declare-styleable>
 
     <!--<declare-styleable name="CustomEdit">-->
     <!--<attr name="left_text" format="string"></attr>-->
