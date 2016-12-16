@@ -8,7 +8,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import yanyu.com.mymio.R;
-import yanyu.com.mymio.StartTagSelecteListener;
+import yanyu.com.mymio.callback.StartTagSelecteListener;
 import yanyu.com.mymio.base.BaseListAdpter;
 import yanyu.com.mymio.bean.StarTag;
 

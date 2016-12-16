@@ -15,7 +15,6 @@
         app:setRightVisible="visible"
         app:setTitle="首页" />
 
-    <include layout="@layout/line" />
 
     <com.jingchen.pulltorefresh.PullToRefreshLayout
         android:id="@+id/pullToRefreshLayout"
@@ -24,6 +23,7 @@
 
         <com.jingchen.pulltorefresh.PullableRecyclerView
             android:id="@+id/recyclerView"
+            android:background="@color/white"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

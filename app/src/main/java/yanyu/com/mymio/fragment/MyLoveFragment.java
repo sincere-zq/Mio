@@ -13,7 +13,7 @@ import java.util.List;
 
 import butterknife.Bind;
 import yanyu.com.mymio.R;
-import yanyu.com.mymio.StartTagSelecteListener;
+import yanyu.com.mymio.callback.StartTagSelecteListener;
 import yanyu.com.mymio.adpter.StarTypeAdapter;
 import yanyu.com.mymio.adpter.StarTypeContentAdapter;
 import yanyu.com.mymio.base.BaseFragment;

@@ -49,7 +49,7 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
         mPaint = new Paint();
 //        mPaint = new Paint(Paint.ANTI_ALIAS_FLAG) ;
 //        mPaint.setColor(Color.parseColor("#f2f2f2"));
-        mPaint.setColor(Color.parseColor("#000000"));
+        mPaint.setColor(Color.parseColor("#ffbbbbbb"));
          /*设置填充*/
         mPaint.setStyle(Paint.Style.FILL);
     }

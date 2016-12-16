@@ -40,7 +40,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         beforeInitView();
         if (useDefaultTitleBarColor) {
             //改变状态栏颜色;注意：此处一旦设置 android:fitsSystemWindows="false"将无效
-            setTitleBarColor(R.color.colorPrimary);
+            setTitleBarColor(R.color.yello_normal);
         }
         initView();
         initData();

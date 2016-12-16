@@ -9,4 +9,5 @@
     <color name="yello_normal">#ffe119</color>
     <color name="black_bg">#f2f2f2</color>
     <color name="black_text">#eeeeee</color>
+    <color name="shade">#ffbbbbbb</color>
 </resources>

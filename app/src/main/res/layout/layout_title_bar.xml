@@ -20,7 +20,7 @@
             android:layout_height="match_parent"
             android:layout_centerInParent="true"
             android:gravity="center"
-            android:textSize="@dimen/sp_20" />
+            android:textSize="@dimen/sp_16" />
 
         <ImageView
             android:id="@+id/img_right"

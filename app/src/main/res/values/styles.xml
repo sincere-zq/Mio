@@ -13,7 +13,7 @@
         <item name="android:screenOrientation">portrait</item>
         <!--<item name="android:background">@color/white</item>-->
         <!--<item name="android:windowAnimationStyle">@style/myact</item>-->
-        <item name="android:windowBackground">@color/app_bg</item>
+        <item name="android:windowBackground">@color/yello_normal</item>
     </style>
 
     <!--  TextView样式-->
