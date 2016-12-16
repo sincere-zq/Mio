@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -10,11 +10,11 @@
         <item name="android:textSize">@dimen/sp_14</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="android:windowIsTranslucent">true</item>
         <item name="android:screenOrientation">portrait</item>
+        <!--<item name="android:background">@color/white</item>-->
         <!--<item name="android:windowAnimationStyle">@style/myact</item>-->
+        <item name="android:windowBackground">@color/app_bg</item>
     </style>
-
 
     <!--  TextView样式-->
     <style name="CustomTextViewStyle">

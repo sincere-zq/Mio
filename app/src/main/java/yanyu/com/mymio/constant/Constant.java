@@ -11,4 +11,7 @@ public class Constant {
     public static final String GETCOLLECTNEWSLIST = URL + "/Common.wp/News/getCollectNewsList";//获得用户收藏的咨询列表
     public static final String GET_BANNER = URL + "/Common.wp/Index/getIndexBanner"; //查询banner数据
     public static final String GET_NEWSLIST = URL + "/Common.wp/News/getNewsList"; //获取资讯列表
+    public static final String GETSTARLIST = URL + "/Common.wp/Star/getStarList";//获取全部明星列表
+    public static final String GETTYPESTARLIST = URL + "/Common.wp/Star/getTypeStarList";//获取某类型明星列表
+    public static final String GETHOTSTARLIST = URL + "/Common.wp/Star/getHotStarList";//获取热门明星列表
 }

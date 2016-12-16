@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="false">
+
+    <item
+        android:drawable="@drawable/fengmijiazai1"
+        android:duration="20" />
+    <item
+        android:drawable="@drawable/fengmijiazai2"
+        android:duration="20" />
+    <item
+        android:drawable="@drawable/fengmijiazai3"
+        android:duration="20" />
+    <item
+        android:drawable="@drawable/fengmijiazai4"
+        android:duration="20" />
+    <item
+        android:drawable="@drawable/fengmijiazai5"
+        android:duration="20" />
+    <item
+        android:drawable="@drawable/fengmijiazai6"
+        android:duration="20" />
+    <item
+        android:drawable="@drawable/fengmijiazai7"
+        android:duration="20" />
+    <item
+        android:drawable="@drawable/fengmijiazai8"
+        android:duration="20" />
+    <item
+        android:drawable="@drawable/fengmijiazai9"
+        android:duration="20" />
+    <item
+        android:drawable="@drawable/fengmijiazai10"
+        android:duration="20" />
+    <item
+        android:drawable="@drawable/fengmijiazai11"
+        android:duration="20" />
+    <item
+        android:drawable="@drawable/fengmijiazai12"
+        android:duration="20" />
+    <item
+        android:drawable="@drawable/fengmijiazai13"
+        android:duration="20" />
+    <item
+        android:drawable="@drawable/fengmijiazai14"
+        android:duration="20" />
+    <item
+        android:drawable="@drawable/fengmijiazai15"
+        android:duration="20" />
+    <item
+        android:drawable="@drawable/fengmijiazai16"
+        android:duration="20" />
+    <item
+        android:drawable="@drawable/fengmijiazai17"
+        android:duration="20" />
+    <item
+        android:drawable="@drawable/fengmijiazai18"
+        android:duration="20" />
+    <item
+        android:drawable="@drawable/fengmijiazai19"
+        android:duration="20" />
+    <item
+        android:drawable="@drawable/fengmijiazai20"
+        android:duration="20" />
+
+</animation-list>

@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.jingchen.pulltorefresh.PullToRefreshLayout;
 import com.jude.rollviewpager.OnItemClickListener;
 import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.hintview.ColorPointHintView;
@@ -15,8 +16,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import butterknife.Bind;
 import yanyu.com.mymio.R;
+import yanyu.com.mymio.activity.SecondActivity;
+import yanyu.com.mymio.activity.WelcomActivity;
 import yanyu.com.mymio.adpter.NewsAdapter;
 import yanyu.com.mymio.adpter.TestLoopAdapter;
 import yanyu.com.mymio.base.BaseFragment;
@@ -25,9 +27,9 @@ import yanyu.com.mymio.bean.CollectNewsList;
 import yanyu.com.mymio.constant.Constant;
 import yanyu.com.mymio.http.HttpArrayCallBack;
 import yanyu.com.mymio.http.HttpHelper;
-import yanyu.com.mymio.refresh.PullToRefreshLayout;
 import yanyu.com.mymio.tool.DividerItemDecoration;
 import yanyu.com.mymio.util.ToastUtil;
+import yanyu.com.mymio.view.TitleBar;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -35,18 +37,17 @@ import yanyu.com.mymio.util.ToastUtil;
 public class DaMenKouFragment extends BaseFragment {
 
     private final static int ROLL_DELAY = 1000;
-    @Bind(R.id.rollPagerView)
-    RollPagerView rollPagerView;
-    @Bind(R.id.recyclerView)
-    RecyclerView recyclerView;
-    @Bind(R.id.xRefresh)
-    PullToRefreshLayout xRefresh;
+    private RecyclerView recyclerView;
     private TestLoopAdapter pagerAdapter;
     private int page = 1;
     private NewsAdapter newsAdpter;
     private List<CollectNewsList> newsLists;
     private List<Banner> bannerLists;
-    private boolean isRefresh;
+    private RollPagerView rollPagerView;
+    private View view;
+    private PullToRefreshLayout pullToRefreshLayout;
+    private int state;//0、默认状态 1、下拉刷新 2、上拉刷新
+    private TitleBar title_bar;
 
     @Override
     protected int getResource() {
@@ -61,14 +62,21 @@ public class DaMenKouFragment extends BaseFragment {
 
     @Override
     protected void initView(View rootView) {
-
+        recyclerView = findViewByIdNoCast(R.id.recyclerView);
+        pullToRefreshLayout = findViewByIdNoCast(R.id.pullToRefreshLayout);
+        title_bar = findViewByIdNoCast(R.id.title_bar);
     }
 
     @Override
     protected void initData() {
         newsLists = new ArrayList<>();
         bannerLists = new ArrayList<>();
+        setHeader();
+        title_bar.setBack(false);
+        title_bar.setLeftToActivity(SecondActivity.class);
+        title_bar.setRightToActivity(WelcomActivity.class);
         newsAdpter = new NewsAdapter(getActivity());
+        newsAdpter.setHeaderView(view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
         recyclerView.setAdapter(newsAdpter);
@@ -82,22 +90,18 @@ public class DaMenKouFragment extends BaseFragment {
                 ToastUtil.showToast("点击了图片" + position);
             }
         });
-        xRefresh.setOnRefreshListener(new PullToRefreshLayout.OnRefreshListener() {
+        pullToRefreshLayout.setOnPullListener(new PullToRefreshLayout.OnPullListener() {
             @Override
             public void onRefresh(PullToRefreshLayout pullToRefreshLayout) {
-                xRefresh = pullToRefreshLayout;
-                isRefresh = true;
-                bannerLists.clear();
-                getBanner();
+                state = 1;
                 page = 1;
-                newsLists.clear();
                 getNewsList();
+                getBanner();
             }
 
             @Override
             public void onLoadMore(PullToRefreshLayout pullToRefreshLayout) {
-                xRefresh = pullToRefreshLayout;
-                isRefresh = true;
+                state = 2;
                 page++;
                 getNewsList();
             }
@@ -138,28 +142,43 @@ public class DaMenKouFragment extends BaseFragment {
 
             @Override
             public void onSuccess(List<CollectNewsList> result) {
+
                 if (result != null) {
+                    if (state == 1) {
+                        newsLists.clear();
+                        pullToRefreshLayout.refreshFinish(PullToRefreshLayout.SUCCEED);
+                        state = 0;
+                    }
+                    if (state == 2) {
+                        pullToRefreshLayout.loadmoreFinish(PullToRefreshLayout.SUCCEED);
+                    }
                     newsLists.addAll(result);
                     newsAdpter.settList(newsLists);
                     newsAdpter.notifyDataSetChanged();
-                    if (isRefresh)
-                        LoadSucceed(PullToRefreshLayout.SUCCEED);
                 }
+
             }
 
             @Override
             public void onFail(String errMsg) {
-                if (isRefresh)
-                    LoadSucceed(PullToRefreshLayout.FAIL);
+                if (state == 1) {
+                    pullToRefreshLayout.refreshFinish(PullToRefreshLayout.FAIL);
+                    state = 0;
+                }
+                if (state == 2) {
+                    pullToRefreshLayout.loadmoreFinish(PullToRefreshLayout.FAIL);
+                }
+                ToastUtil.showToast(errMsg);
             }
         });
     }
 
     /**
-     * 设置刷新或者夹在更多成功
+     * 头部
      */
-    public void LoadSucceed(int succeed) {
-        xRefresh.refreshFinish(succeed);
-        isRefresh = false;
+    public void setHeader() {
+        view = View.inflate(getActivity(), R.layout.header_da_men_kou, null);
+        rollPagerView = (RollPagerView) view.findViewById(R.id.rollPagerView);
     }
+
 }

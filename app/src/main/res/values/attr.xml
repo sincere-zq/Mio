@@ -1,20 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="CustomTabSelector">
-        <attr name="botom_text" format="string"></attr>
-        <attr name="top_img" format="reference"></attr>
+        <attr name="botom_text" format="string"/>
+        <attr name="top_img" format="reference"/>
     </declare-styleable>
 
+    <declare-styleable name="TitleBar">
+        <attr name="setTitle" format="string"/>
+        <attr name="setLeftImg" format="reference"/>
+        <attr name="setRightImg" format="reference"/>
+        <attr name="setRightVisible">
+            <enum name="visible" value="1" />
+            <enum name="gone" value="0" />
+        </attr>
+    </declare-styleable>
+
+
     <!--<declare-styleable name="CustomEdit">-->
-        <!--<attr name="left_text" format="string"></attr>-->
-        <!--<attr name="left_size" format="dimension"></attr>-->
-        <!--<attr name="left_color" format="reference"></attr>-->
-        <!--<attr name="right_hint" format="string"></attr>-->
-        <!--<attr name="right_hint_color" format="reference"></attr>-->
-        <!--<attr name="right_text" format="string"></attr>-->
-        <!--<attr name="right_text_color" format="reference"></attr>-->
-        <!--<attr name="right_text_size" format="dimension"></attr>-->
-        <!--<attr name="edit_enable" format="boolean"></attr>-->
+    <!--<attr name="left_text" format="string"></attr>-->
+    <!--<attr name="left_size" format="dimension"></attr>-->
+    <!--<attr name="left_color" format="reference"></attr>-->
+    <!--<attr name="right_hint" format="string"></attr>-->
+    <!--<attr name="right_hint_color" format="reference"></attr>-->
+    <!--<attr name="right_text" format="string"></attr>-->
+    <!--<attr name="right_text_color" format="reference"></attr>-->
+    <!--<attr name="right_text_size" format="dimension"></attr>-->
+    <!--<attr name="edit_enable" format="boolean"></attr>-->
     <!--</declare-styleable>-->
 
     <!--<declare-styleable name="RoundProgressBar">-->

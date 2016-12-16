@@ -1,35 +1,48 @@
 package yanyu.com.mymio.fragment;
 
 
-import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.ListView;
 
-import com.jude.rollviewpager.RollPagerView;
-import com.jude.rollviewpager.adapter.LoopPagerAdapter;
-import com.jude.rollviewpager.hintview.ColorPointHintView;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import butterknife.Bind;
-import butterknife.OnClick;
 import yanyu.com.mymio.R;
-import yanyu.com.mymio.activity.SecondActivity;
+import yanyu.com.mymio.StartTagSelecteListener;
+import yanyu.com.mymio.adpter.StarTypeAdapter;
+import yanyu.com.mymio.adpter.StarTypeContentAdapter;
 import yanyu.com.mymio.base.BaseFragment;
-import yanyu.com.mymio.util.IntentUtils;
+import yanyu.com.mymio.bean.StarList;
+import yanyu.com.mymio.bean.StarTag;
+import yanyu.com.mymio.constant.Constant;
+import yanyu.com.mymio.http.HttpArrayCallBack;
+import yanyu.com.mymio.http.HttpHelper;
+import yanyu.com.mymio.view.TitleBar;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class MyLoveFragment extends BaseFragment {
 
-    @Bind(R.id.desc)
-    TextView desc;
-    @Bind(R.id.rollPagerView)
-    RollPagerView rollPagerView;
-    private TestNomalAdapter mNormalAdapter;
-    private int Imgs[] = {R.mipmap.img1, R.mipmap.img2, R.mipmap.img3, R.mipmap.img4, R.mipmap.img5};
+
+    @Bind(R.id.title_bar)
+    TitleBar titleBar;
+    @Bind(R.id.list_type)
+    ListView listType;
+    @Bind(R.id.list_content)
+    ListView listContent;
+
+    private StarTypeAdapter starTypeAdapter;
+
+    private List<StarTag> tagList;
+
+    private List<StarList> starList;
+
+    private StarTypeContentAdapter starContentAdapter;
+    private int page = 1;
 
     @Override
     protected int getResource() {
@@ -38,7 +51,7 @@ public class MyLoveFragment extends BaseFragment {
 
     @Override
     protected void beforeInitView() {
-
+        getAllStar();
     }
 
     @Override
@@ -48,45 +61,111 @@ public class MyLoveFragment extends BaseFragment {
 
     @Override
     protected void initData() {
-        rollPagerView.setPlayDelay(1000);
-        rollPagerView.setAdapter(mNormalAdapter = new TestNomalAdapter(rollPagerView));
-        rollPagerView.setHintView(new ColorPointHintView(getActivity(), Color.YELLOW, Color.WHITE));
-        mNormalAdapter.setImg(Imgs);
+        tagList = new ArrayList<>();
+        starList = new ArrayList<>();
+        setTag();
+        starTypeAdapter = new StarTypeAdapter(getActivity());
+        starTypeAdapter.settList(tagList);
+        listType.setAdapter(starTypeAdapter);
+        starContentAdapter = new StarTypeContentAdapter(getActivity());
+        listContent.setAdapter(starContentAdapter);
+        starTypeAdapter.setListener(new StartTagSelecteListener() {
+            @Override
+            public void currentType(String type) {
+                if (type.equals("全部"))
+                    getAllStar();
+                else if (type.equals("热门"))
+                    getHotStar();
+                else
+                    getTypeStarList(type);
+            }
+        });
     }
 
-    @OnClick({R.id.desc})
+    private void setTag() {
+        tagList.add(new StarTag("全部", true));
+        tagList.add(new StarTag("热门"));
+        tagList.add(new StarTag("演员"));
+        tagList.add(new StarTag("歌手"));
+        tagList.add(new StarTag("游戏"));
+        tagList.add(new StarTag("网红"));
+        tagList.add(new StarTag("BOSS"));
+        tagList.add(new StarTag("名嘴"));
+        tagList.add(new StarTag("体育"));
+    }
+
+    @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.desc:
-                IntentUtils.openActivity(getActivity(), SecondActivity.class);
-                break;
-        }
+
     }
 
-    private class TestNomalAdapter extends LoopPagerAdapter {
-        int img[] = new int[0];
+    public void getAllStar() {
+        HashMap<String, Object> params = new HashMap<>();
+        params.put("wpuser_id", 1);
+        params.put("page", page);
+        HttpHelper.HttpPostArrayUtil(Constant.GETSTARLIST, params, new HttpArrayCallBack<StarList>() {
 
-        public void setImg(int[] img) {
-            this.img = img;
-            notifyDataSetChanged();
-        }
+            @Override
+            public void onSuccess(List<StarList> result) {
+                if (result != null) {
+                    starList.clear();
+                    starList.addAll(result);
+                    starContentAdapter.settList(starList);
+                    starContentAdapter.notifyDataSetChanged();
+                }
+            }
 
-        public TestNomalAdapter(RollPagerView viewPager) {
-            super(viewPager);
-        }
+            @Override
+            public void onFail(String errMsg) {
 
-        @Override
-        public View getView(ViewGroup container, int position) {
-            ImageView view = new ImageView(container.getContext());
-            view.setImageResource(img[position]);
-            view.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-            return view;
-        }
+            }
+        });
+    }
 
-        @Override
-        public int getRealCount() {
-            return img.length;
-        }
+    public void getTypeStarList(String type) {
+        HashMap<String, Object> params = new HashMap<>();
+        params.put("wpuser_id", 1);
+        params.put("page", page);
+        params.put("type", type);
+        HttpHelper.HttpPostArrayUtil(Constant.GETTYPESTARLIST, params, new HttpArrayCallBack<StarList>() {
+
+            @Override
+            public void onSuccess(List<StarList> result) {
+                if (result != null) {
+                    starList.clear();
+                    starList.addAll(result);
+                    starContentAdapter.settList(starList);
+                    starContentAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onFail(String errMsg) {
+
+            }
+        });
+    }
+
+    public void getHotStar() {
+        HashMap<String, Object> params = new HashMap<>();
+        params.put("wpuser_id", 1);
+        params.put("page", page);
+        HttpHelper.HttpPostArrayUtil(Constant.GETHOTSTARLIST, params, new HttpArrayCallBack<StarList>() {
+
+            @Override
+            public void onSuccess(List<StarList> result) {
+                if (result != null) {
+                    starList.clear();
+                    starList.addAll(result);
+                    starContentAdapter.settList(starList);
+                    starContentAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onFail(String errMsg) {
+
+            }
+        });
     }
 }

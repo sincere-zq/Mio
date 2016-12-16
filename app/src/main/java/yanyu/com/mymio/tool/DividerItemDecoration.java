@@ -48,7 +48,8 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
         mItemSize = (int) TypedValue.applyDimension(mItemSize, TypedValue.COMPLEX_UNIT_DIP, context.getResources().getDisplayMetrics());
         mPaint = new Paint();
 //        mPaint = new Paint(Paint.ANTI_ALIAS_FLAG) ;
-        mPaint.setColor(Color.parseColor("#f2f2f2"));
+//        mPaint.setColor(Color.parseColor("#f2f2f2"));
+        mPaint.setColor(Color.parseColor("#000000"));
          /*设置填充*/
         mPaint.setStyle(Paint.Style.FILL);
     }

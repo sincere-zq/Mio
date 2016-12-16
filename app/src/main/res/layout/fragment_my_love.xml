@@ -1,21 +1,41 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="yanyu.com.mymio.fragment.DaMenKouFragment">
 
-    <TextView
-        android:id="@+id/desc"
+    <yanyu.com.mymio.view.TitleBar
+        android:id="@+id/title_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="我爱的"
-        android:textColor="@color/black" />
+        android:layout_height="@dimen/dp_50"
+        app:setLeftImg="@mipmap/fanhui"
+        app:setRightImg="@mipmap/xiaofangdajing"
+        app:setRightVisible="visible"
+        app:setTitle="关注明星" />
 
-    <com.jude.rollviewpager.RollPagerView
-        android:id="@+id/rollPagerView"
+    <include layout="@layout/line" />
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp" />
+        android:layout_height="match_parent">
 
+        <ListView
+            android:id="@+id/list_type"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:divider="@null"
+            android:scrollbars="none" />
+
+        <ListView
+            android:id="@+id/list_content"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:background="@color/white"
+            android:scrollbars="none" />
+
+    </LinearLayout>
 </LinearLayout>
