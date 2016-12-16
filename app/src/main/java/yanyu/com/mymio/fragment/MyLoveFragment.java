@@ -5,6 +5,8 @@ import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.ListView;
 
+import com.jingchen.pulltorefresh.PullToRefreshLayout;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -34,6 +36,8 @@ public class MyLoveFragment extends BaseFragment {
     ListView listType;
     @Bind(R.id.list_content)
     ListView listContent;
+    @Bind(R.id.pullToRefreshLayout)
+    PullToRefreshLayout pullToRefreshLayout;
 
     private StarTypeAdapter starTypeAdapter;
 
@@ -43,6 +47,8 @@ public class MyLoveFragment extends BaseFragment {
 
     private StarTypeContentAdapter starContentAdapter;
     private int page = 1;
+    private boolean isFresh;
+    private boolean isFirst = true;
 
     @Override
     protected int getResource() {
@@ -71,13 +77,52 @@ public class MyLoveFragment extends BaseFragment {
         listContent.setAdapter(starContentAdapter);
         starTypeAdapter.setListener(new StartTagSelecteListener() {
             @Override
-            public void currentType(String type) {
-                if (type.equals("全部"))
-                    getAllStar();
-                else if (type.equals("热门"))
-                    getHotStar();
-                else
-                    getTypeStarList(type);
+            public void currentType(final String type) {
+                isFirst = false;
+                loadMore(type);
+            }
+        });
+        pullToRefreshLayout.setPullDownEnable(false);
+        if (isFirst)
+            loadMore("全部");
+    }
+
+    /**
+     * 加载更多
+     *
+     * @param type
+     */
+    private void loadMore(final String type) {
+        if (type.equals("全部")) {
+            page = 1;
+            getAllStar();
+        } else if (type.equals("热门")) {
+            page = 1;
+            getHotStar();
+        } else {
+            page = 1;
+            getTypeStarList(type);
+        }
+        pullToRefreshLayout.setOnPullListener(new PullToRefreshLayout.OnPullListener() {
+            @Override
+            public void onRefresh(PullToRefreshLayout pullToRefreshLayout) {
+
+            }
+
+            @Override
+            public void onLoadMore(PullToRefreshLayout pullToRefreshLayout) {
+                isFresh = true;
+                page++;
+                switch (type) {
+                    case "全部":
+                        getAllStar();
+                        break;
+                    case "热门":
+                        getHotStar();
+                        break;
+                    default:
+                        getTypeStarList(type);
+                }
             }
         });
     }
@@ -99,6 +144,9 @@ public class MyLoveFragment extends BaseFragment {
 
     }
 
+    /**
+     * 获取全部明星列表
+     */
     public void getAllStar() {
         HashMap<String, Object> params = new HashMap<>();
         params.put("wpuser_id", 1);
@@ -108,10 +156,15 @@ public class MyLoveFragment extends BaseFragment {
             @Override
             public void onSuccess(List<StarList> result) {
                 if (result != null) {
-                    starList.clear();
+                    if (!isFresh)
+                        starList.clear();
                     starList.addAll(result);
                     starContentAdapter.settList(starList);
                     starContentAdapter.notifyDataSetChanged();
+                    if (isFresh) {
+                        isFresh = false;
+                        pullToRefreshLayout.loadmoreFinish(PullToRefreshLayout.SUCCEED);
+                    }
                 }
             }
 
@@ -122,6 +175,11 @@ public class MyLoveFragment extends BaseFragment {
         });
     }
 
+    /**
+     * g根据类别获取明星
+     *
+     * @param type
+     */
     public void getTypeStarList(String type) {
         HashMap<String, Object> params = new HashMap<>();
         params.put("wpuser_id", 1);
@@ -132,10 +190,15 @@ public class MyLoveFragment extends BaseFragment {
             @Override
             public void onSuccess(List<StarList> result) {
                 if (result != null) {
-                    starList.clear();
+                    if (!isFresh)
+                        starList.clear();
                     starList.addAll(result);
                     starContentAdapter.settList(starList);
                     starContentAdapter.notifyDataSetChanged();
+                    if (isFresh) {
+                        isFresh = false;
+                        pullToRefreshLayout.loadmoreFinish(PullToRefreshLayout.SUCCEED);
+                    }
                 }
             }
 
@@ -146,6 +209,9 @@ public class MyLoveFragment extends BaseFragment {
         });
     }
 
+    /**
+     * 获得热门明星
+     */
     public void getHotStar() {
         HashMap<String, Object> params = new HashMap<>();
         params.put("wpuser_id", 1);
@@ -155,10 +221,15 @@ public class MyLoveFragment extends BaseFragment {
             @Override
             public void onSuccess(List<StarList> result) {
                 if (result != null) {
-                    starList.clear();
+                    if (!isFresh)
+                        starList.clear();
                     starList.addAll(result);
                     starContentAdapter.settList(starList);
                     starContentAdapter.notifyDataSetChanged();
+                    if (isFresh) {
+                        isFresh = false;
+                        pullToRefreshLayout.loadmoreFinish(PullToRefreshLayout.SUCCEED);
+                    }
                 }
             }
 
@@ -168,4 +239,5 @@ public class MyLoveFragment extends BaseFragment {
             }
         });
     }
+
 }
