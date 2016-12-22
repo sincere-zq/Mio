@@ -25,7 +25,7 @@ import yanyu.com.mymio.base.BaseFragment;
 import yanyu.com.mymio.bean.Banner;
 import yanyu.com.mymio.bean.CollectNewsList;
 import yanyu.com.mymio.constant.Constant;
-import yanyu.com.mymio.http.HttpArrayCallBack;
+import yanyu.com.mymio.callback.HttpArrayCallBack;
 import yanyu.com.mymio.http.HttpHelper;
 import yanyu.com.mymio.tool.DividerItemDecoration;
 import yanyu.com.mymio.util.ToastUtil;

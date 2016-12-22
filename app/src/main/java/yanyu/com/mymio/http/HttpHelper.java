@@ -8,6 +8,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
 
+import yanyu.com.mymio.callback.HttpArrayCallBack;
+import yanyu.com.mymio.callback.HttpCallBack;
+import yanyu.com.mymio.callback.MyFileCallBack;
 import yanyu.com.mymio.util.LogUtils;
 import yanyu.com.mymio.util.MD5Utils;
 
@@ -46,7 +49,6 @@ public class HttpHelper {
             OkHttpUtils.post().url(url).addParams("data", MD5Utils.encrypt(jsonObject.toString())).build().execute(httpCallBack);
             LogUtils.e(jsonObject.toString());
         }
-
     }
 
     public static void HttpPostArrayUtil(String url, HashMap<String, Object> params, HttpArrayCallBack httpCallBack) {
@@ -76,8 +78,13 @@ public class HttpHelper {
                     }
                 }
             }
+            LogUtils.e("++++++" + MD5Utils.encrypt(jsonObject.toString()));
             OkHttpUtils.post().url(url).addParams("data", MD5Utils.encrypt(jsonObject.toString())).build().execute(httpCallBack);
             LogUtils.e(jsonObject.toString());
         }
+    }
+
+    public static void downLoad(String url, MyFileCallBack fileCallBack) {
+        OkHttpUtils.get().url(url).build().execute(fileCallBack);
     }
 }

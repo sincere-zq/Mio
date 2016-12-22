@@ -20,7 +20,7 @@ import yanyu.com.mymio.base.BaseFragment;
 import yanyu.com.mymio.bean.StarList;
 import yanyu.com.mymio.bean.StarTag;
 import yanyu.com.mymio.constant.Constant;
-import yanyu.com.mymio.http.HttpArrayCallBack;
+import yanyu.com.mymio.callback.HttpArrayCallBack;
 import yanyu.com.mymio.http.HttpHelper;
 import yanyu.com.mymio.view.TitleBar;
 
@@ -160,7 +160,6 @@ public class MyLoveFragment extends BaseFragment {
                         starList.clear();
                     starList.addAll(result);
                     starContentAdapter.settList(starList);
-                    starContentAdapter.notifyDataSetChanged();
                     if (isFresh) {
                         isFresh = false;
                         pullToRefreshLayout.loadmoreFinish(PullToRefreshLayout.SUCCEED);

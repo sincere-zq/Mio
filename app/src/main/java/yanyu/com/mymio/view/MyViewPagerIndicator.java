@@ -10,7 +10,6 @@ import android.graphics.Path;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
@@ -41,7 +40,7 @@ public class MyViewPagerIndicator extends LinearLayout {
     private int mInitTranslationX;
     private int mTranslationX;
     private int mTabVisibleCount;
-    private static final int COUNT_DEFAULT_TAB = 4;
+    private static final int COUNT_DEFAULT_TAB = 3;
     private static final String COLOR_TEXT_NORMAL = "#6C6C6C";
     private static final String COLOR_TEXT_HIGHLIGHT = "#000000";
     private List<String> mTitles;
@@ -143,32 +142,18 @@ public class MyViewPagerIndicator extends LinearLayout {
      * 指示器跟随手指进行滚动
      *
      * @param position
-     * @param offset
      */
-    public void scroll(int position, float offset) {
+    public void scroll(int position, float positionOffset) {
         int tabWidth = getWidth() / mTabVisibleCount;
-        mTranslationX = (int) (tabWidth * (offset + position + 1));
-
-        // 容器移动，在tab处于移动至最后一个时
-        if (position >= (mTabVisibleCount - 2) && offset > 0
-                && getChildCount() > mTabVisibleCount) {
-
-            if (mTabVisibleCount != 1) {
-                Log.e("TAG",
-                        ((position - (mTabVisibleCount - 2)) *
-                                tabWidth + (int) (tabWidth * offset))
-                                + "");
-                this.scrollTo((position - (mTabVisibleCount - 2)) * tabWidth
-                        + (int) (tabWidth * offset), 0);
-            } else {
-                this.scrollTo(position * tabWidth + (int) (tabWidth * offset),
-                        0);
-            }
-
+        mTranslationX = (int) (tabWidth * (positionOffset + position));//三角形的偏移量
+        //容器移动，当tab处于移动至最后一个时
+        if (position >= mTabVisibleCount - 1 && positionOffset > 0 && getChildCount() > mTabVisibleCount) {
+            if (mTabVisibleCount != 0)
+                this.scrollTo((position - (mTabVisibleCount - 1)) * tabWidth + (int) (tabWidth * positionOffset), 0);
+            else
+                this.scrollTo(position * tabWidth + (int) (tabWidth * positionOffset), 0);
         }
-
         invalidate();
-
     }
 
     public void setTabItemTitles(List<String> titles) {
@@ -281,7 +266,7 @@ public class MyViewPagerIndicator extends LinearLayout {
      */
     private void resetTextViewColor() {
         for (int i = 0; i < getChildCount(); i++) {
-            View view = getChildAt(i + 1);
+            View view = getChildAt(i);
             if (view instanceof TextView) {
                 ((TextView) view).setTextColor(Color.parseColor(COLOR_TEXT_NORMAL));
             }
@@ -296,7 +281,7 @@ public class MyViewPagerIndicator extends LinearLayout {
      */
     private void highLightTextView(int pos) {
         resetTextViewColor();
-        View view = getChildAt(pos + 1);
+        View view = getChildAt(pos);
         if (view instanceof TextView) {
             ((TextView) view).setTextColor(Color.parseColor(COLOR_TEXT_HIGHLIGHT));
         }
@@ -311,12 +296,12 @@ public class MyViewPagerIndicator extends LinearLayout {
         for (int i = 0; i < cCount; i++) {
             final int j = i;
             View view = getChildAt(i);
-            if (i == 0)
-                view.setVisibility(INVISIBLE);
+//            if (i == 0)
+//                view.setVisibility(INVISIBLE);
             view.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mViewPager.setCurrentItem(j - 1);
+                    mViewPager.setCurrentItem(j);
                 }
             });
 

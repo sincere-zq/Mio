@@ -13,7 +13,7 @@ import yanyu.com.mymio.R;
 import yanyu.com.mymio.adpter.NewsAdapter;
 import yanyu.com.mymio.base.BaseActivity;
 import yanyu.com.mymio.bean.CollectNewsList;
-import yanyu.com.mymio.http.HttpArrayCallBack;
+import yanyu.com.mymio.callback.HttpArrayCallBack;
 import yanyu.com.mymio.http.HttpHelper;
 import yanyu.com.mymio.tool.DividerItemDecoration;
 

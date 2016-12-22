@@ -1,26 +1,23 @@
 package yanyu.com.mymio.fragment;
 
-
-import android.support.v4.app.Fragment;
 import android.view.View;
-import android.widget.TextView;
+
+import com.jingchen.pulltorefresh.PullToRefreshLayout;
+import com.jingchen.pulltorefresh.PullableListView;
 
 import butterknife.Bind;
 import yanyu.com.mymio.R;
 import yanyu.com.mymio.base.BaseFragment;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class PerCenterFragment extends BaseFragment {
-
-
-    @Bind(R.id.desc)
-    TextView desc;
+public class SelectMeetFragment extends BaseFragment {
+    @Bind(R.id.recyclerView)
+    PullableListView recyclerView;
+    @Bind(R.id.pullToRefreshLayout)
+    PullToRefreshLayout pullToRefreshLayout;
 
     @Override
     protected int getResource() {
-        return R.layout.fragment_per_center;
+        return R.layout.fragment_select_meet;
     }
 
     @Override
@@ -35,15 +32,12 @@ public class PerCenterFragment extends BaseFragment {
 
     @Override
     protected void initData() {
-        setOnClick(desc);
+
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.desc:
-                break;
-        }
+
     }
 
 }

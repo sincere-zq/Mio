@@ -30,6 +30,7 @@ public abstract class BaseListAdpter<T, VH extends BaseListAdpter.ViewHolder> ex
 
     public void settList(List<T> tList) {
         this.tList = tList;
+        notifyDataSetChanged();
     }
 
     public List<T> gettList() {

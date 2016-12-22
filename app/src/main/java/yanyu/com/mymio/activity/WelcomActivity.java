@@ -8,6 +8,7 @@ import android.view.View;
 import butterknife.Bind;
 import yanyu.com.mymio.R;
 import yanyu.com.mymio.base.BaseActivity;
+import yanyu.com.mymio.constant.Constant;
 import yanyu.com.mymio.util.ToastUtil;
 import yanyu.com.mymio.view.CustomVideoView;
 
@@ -35,7 +36,8 @@ public class WelcomActivity extends BaseActivity {
 
     @Override
     public void initData() {
-        videoView.setVideoURI(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.intro));
+//        videoView.setVideoURI(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.intro));
+        videoView.setVideoURI(Uri.parse(Constant.VIDEOURL));
         videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mp) {

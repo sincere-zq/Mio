@@ -1,6 +1,7 @@
 package yanyu.com.mymio.image;
 
 import android.net.Uri;
+import android.widget.ImageView;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.interfaces.DraweeController;
@@ -49,7 +50,7 @@ public class ImageLoader {
         //如果layout里面没有设置宽高就给个默认高度
         width = mSimpleDraweeView.getWidth();
         heigth = mSimpleDraweeView.getHeight();
-
+        mSimpleDraweeView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         if (width <= 0) {
             width = DisplayUtil.dip2px(MyApplication.getAppContext(), 40);
         }
