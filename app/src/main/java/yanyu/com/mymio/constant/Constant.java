@@ -22,4 +22,5 @@ public class Constant {
     public static final String GETMEETINGLIST = URL + "/Common.wp/Meeting/getMeetingList";//获得约星列表
     public static final String GETVOTESTARLIST = URL + "/Common.wp/Star/getVoteStarList";//获得约谁列表
     public static final String VIDEOURL = "http://show-video.wopu.me/c20dfcd97571bf0adfd8955b272abd82.mp4";
+    public static final String GET_LIVE_LIST = URL + "/Common.wp/LiveVideo/getVideoList"; //获取直播全部内容
 }

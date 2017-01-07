@@ -68,6 +68,7 @@ public class SecondActivity extends BaseActivity {
                     newsAdapter.notifyDataSetChanged();
                 }
             }
+
             @Override
             public void onFail(String errMsg) {
 

@@ -85,7 +85,7 @@ public abstract class BaseRecyclerViewAdapter<T, VH extends BaseRecyclerViewAdap
                     @Override
                     public void onClick(View view) {
                         if (itemClickListener != null) {
-                            itemClickListener.onItemClick(position, bean);
+                            itemClickListener.onItemClick(position, (T) bean);
                         }
                     }
                 });

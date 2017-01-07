@@ -9,6 +9,7 @@
     <yanyu.com.mymio.view.MyViewPagerIndicator
         android:id="@+id/viewPagerIndicator"
         android:layout_width="match_parent"
+        android:background="@color/yello_normal"
         android:layout_height="@dimen/dp_50" />
 
     <android.support.v4.view.ViewPager

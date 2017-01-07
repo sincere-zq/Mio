@@ -19,9 +19,13 @@ import yanyu.com.mymio.application.MyApplication;
  * Description: 进度条显示
  */
 public class LoadingView extends PopupWindow {
-
-
+    ImageView img_loading, img_null, img_fail;
+    AnimationDrawable animationDrawable;
     private static LoadingView loadingView;
+    public static final int LOADING_NULL = 0;
+    public static final int LOADING_SUCEED = 1;
+    public static final int LOADING_FAIL = 2;
+    public static final int LOADING = 3;
 
     public LoadingView(Context context) {
         this(context, null);
@@ -59,8 +63,10 @@ public class LoadingView extends PopupWindow {
         this.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         this.setBackgroundDrawable(new BitmapDrawable());
 
-        ImageView img_loading = (ImageView) view.findViewById(R.id.img_loading);
-        AnimationDrawable animationDrawable = (AnimationDrawable) img_loading.getDrawable();
+        img_loading = (ImageView) view.findViewById(R.id.img_loading);
+        img_fail = (ImageView) view.findViewById(R.id.img_fail);
+        img_null = (ImageView) view.findViewById(R.id.img_null);
+        animationDrawable = (AnimationDrawable) img_loading.getDrawable();
         animationDrawable.start();
     }
 
@@ -78,6 +84,29 @@ public class LoadingView extends PopupWindow {
         }
     }
 
+    public void setLoadingState(int state) {
+        switch (state) {
+            case LOADING_NULL:
+                img_loading.setVisibility(View.GONE);
+                img_fail.setVisibility(View.GONE);
+                img_null.setVisibility(View.VISIBLE);
+                break;
+            case LOADING_SUCEED:
+                dismiss();
+                break;
+            case LOADING:
+                img_loading.setVisibility(View.VISIBLE);
+                img_fail.setVisibility(View.GONE);
+                img_null.setVisibility(View.GONE);
+                animationDrawable.start();
+                break;
+            case LOADING_FAIL:
+                img_loading.setVisibility(View.GONE);
+                img_fail.setVisibility(View.VISIBLE);
+                img_null.setVisibility(View.GONE);
+                break;
+        }
+    }
 
     @Override
     public void dismiss() {

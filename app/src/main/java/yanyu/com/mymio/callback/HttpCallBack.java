@@ -16,7 +16,7 @@ import yanyu.com.mymio.util.StringUtil;
  * Created by zengqiang on 2016/8/16 0016.
  * Description: http回调
  */
-public abstract class HttpCallBack<T extends BaseBean> extends StringCallback {
+public abstract class HttpCallBack<T> extends StringCallback {
 
     private Class<T> tClass;
 

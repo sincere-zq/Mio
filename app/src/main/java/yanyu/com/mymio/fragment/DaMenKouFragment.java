@@ -2,6 +2,7 @@ package yanyu.com.mymio.fragment;
 
 
 import android.graphics.Color;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,16 +19,19 @@ import java.util.List;
 
 import yanyu.com.mymio.R;
 import yanyu.com.mymio.activity.SecondActivity;
+import yanyu.com.mymio.activity.TitleActivity;
 import yanyu.com.mymio.activity.WelcomActivity;
 import yanyu.com.mymio.adpter.NewsAdapter;
 import yanyu.com.mymio.adpter.TestLoopAdapter;
 import yanyu.com.mymio.base.BaseFragment;
+import yanyu.com.mymio.base.BaseRecyclerViewAdapter;
 import yanyu.com.mymio.bean.Banner;
 import yanyu.com.mymio.bean.CollectNewsList;
-import yanyu.com.mymio.constant.Constant;
 import yanyu.com.mymio.callback.HttpArrayCallBack;
+import yanyu.com.mymio.constant.Constant;
 import yanyu.com.mymio.http.HttpHelper;
-import yanyu.com.mymio.tool.DividerItemDecoration;
+import yanyu.com.mymio.util.IntentUtils;
+import yanyu.com.mymio.util.MD5Utils;
 import yanyu.com.mymio.util.ToastUtil;
 import yanyu.com.mymio.view.TitleBar;
 
@@ -77,8 +81,16 @@ public class DaMenKouFragment extends BaseFragment {
         title_bar.setRightToActivity(WelcomActivity.class);
         newsAdpter = new NewsAdapter(getActivity());
         newsAdpter.setHeaderView(view);
+        newsAdpter.setOnItemClickListener(new BaseRecyclerViewAdapter.OnItemClickListener<CollectNewsList>() {
+            @Override
+            public void onItemClick(int position, CollectNewsList data) {
+                Bundle bundle=new Bundle();
+                bundle.putString("url", MD5Utils.geturl(data.cover));
+                bundle.putString("title", data.title);
+                IntentUtils.openActivity(getActivity(), TitleActivity.class,bundle);
+            }
+        });
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
-        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
         recyclerView.setAdapter(newsAdpter);
         rollPagerView.setPlayDelay(ROLL_DELAY);
         pagerAdapter = new TestLoopAdapter(rollPagerView);
@@ -142,7 +154,6 @@ public class DaMenKouFragment extends BaseFragment {
 
             @Override
             public void onSuccess(List<CollectNewsList> result) {
-
                 if (result != null) {
                     if (state == 1) {
                         newsLists.clear();
