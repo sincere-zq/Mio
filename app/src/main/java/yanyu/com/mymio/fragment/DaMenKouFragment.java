@@ -5,10 +5,10 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.jingchen.pulltorefresh.PullToRefreshLayout;
+import com.jingchen.pulltorefresh.PullableRecyclerView;
 import com.jude.rollviewpager.OnItemClickListener;
 import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.hintview.ColorPointHintView;
@@ -41,7 +41,7 @@ import yanyu.com.mymio.view.TitleBar;
 public class DaMenKouFragment extends BaseFragment {
 
     private final static int ROLL_DELAY = 1000;
-    private RecyclerView recyclerView;
+    private PullableRecyclerView recyclerView;
     private TestLoopAdapter pagerAdapter;
     private int page = 1;
     private NewsAdapter newsAdpter;
@@ -84,10 +84,10 @@ public class DaMenKouFragment extends BaseFragment {
         newsAdpter.setOnItemClickListener(new BaseRecyclerViewAdapter.OnItemClickListener<CollectNewsList>() {
             @Override
             public void onItemClick(int position, CollectNewsList data) {
-                Bundle bundle=new Bundle();
+                Bundle bundle = new Bundle();
                 bundle.putString("url", MD5Utils.geturl(data.cover));
                 bundle.putString("title", data.title);
-                IntentUtils.openActivity(getActivity(), TitleActivity.class,bundle);
+                IntentUtils.openActivity(getActivity(), TitleActivity.class, bundle);
             }
         });
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));

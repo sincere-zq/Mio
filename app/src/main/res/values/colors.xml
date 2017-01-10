@@ -10,4 +10,5 @@
     <color name="black_bg">#f2f2f2</color>
     <color name="black_text">#eeeeee</color>
     <color name="shade">#ffbbbbbb</color>
+    <color name="app_bg">#ECECEC</color>
 </resources>

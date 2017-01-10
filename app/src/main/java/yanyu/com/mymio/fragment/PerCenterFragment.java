@@ -3,6 +3,7 @@ package yanyu.com.mymio.fragment;
 
 import android.support.v4.app.Fragment;
 import android.view.View;
+import android.widget.ListView;
 
 import java.util.HashMap;
 import java.util.List;
@@ -15,7 +16,6 @@ import yanyu.com.mymio.bean.LiveBean;
 import yanyu.com.mymio.callback.HttpArrayCallBack;
 import yanyu.com.mymio.constant.Constant;
 import yanyu.com.mymio.http.HttpHelper;
-import yanyu.com.mymio.view.CustomListView;
 import yanyu.com.mymio.view.TitleBar;
 
 /**
@@ -23,11 +23,10 @@ import yanyu.com.mymio.view.TitleBar;
  */
 public class PerCenterFragment extends BaseFragment {
 
-
     @Bind(R.id.title_bar)
     TitleBar titleBar;
     @Bind(R.id.listView)
-    CustomListView listView;
+    ListView listView;
     private LiveAdapter adapter;
 
     @Override
